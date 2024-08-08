@@ -11,7 +11,7 @@ import { UsersModule } from 'src/users/users.module';
     PassportModule,
     JwtModule.register({
       secret: 'yourSecretKey',
-      signOptions: { expiresIn: '60m' },
+      signOptions: { expiresIn: '1,440m' },
     }),
   ],
   providers: [AuthService],

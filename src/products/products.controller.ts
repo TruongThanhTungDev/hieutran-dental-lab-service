@@ -3,7 +3,7 @@ import { Public } from 'src/common/decorators/public.decorator';
 import { ProductsService } from './products.service';
 import { ApiTags } from '@nestjs/swagger';
 
-@ApiTags('products')
+@ApiTags('Products')
 @Controller('products')
 export class ProductsController {
   constructor(private readonly productsService: ProductsService) {}
