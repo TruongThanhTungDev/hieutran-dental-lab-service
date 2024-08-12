@@ -9,18 +9,18 @@ export class UsersService {
   constructor(
     @InjectRepository(UsersEntity)
     private usersRepository: Repository<UsersEntity>,
-  ) {
-  }
+  ) {}
 
   async create(createUserDto: CreateUserDto): Promise<UsersEntity> {
     const hashedPassword = await bcrypt.hash(createUserDto.password, 10);
     const newUser = this.usersRepository.create({
       username: createUserDto.username,
       password: hashedPassword,
-      fullname: createUserDto.fullname
+      fullname: createUserDto.fullname,
     });
     return this.usersRepository.save(newUser);
   }
-  async findOne(username: string): Promise<UsersEntity> {
+  async findOne(username: string): Promise<UsersEntity | undefined> {
+    return this.usersRepository.findOne({ where: { username } });
   }
 }
