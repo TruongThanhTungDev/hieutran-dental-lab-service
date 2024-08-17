@@ -27,4 +27,54 @@ export class ProductsEntity extends CommonEntity {
   })
   @Column({ nullable: true, unique: false, comment: 'Giới tính' })
   sex: number;
+
+  @ApiProperty({
+    nullable: true,
+    uniqueItems: false,
+    description: 'Phòng khám/Bác sĩ',
+  })
+  @Column({ nullable: true, unique: false, comment: 'Phòng khám/Bác sĩ' })
+  doctorClinic: string;
+
+  @ApiProperty({
+    nullable: true,
+    uniqueItems: false,
+    description: 'Số răng',
+  })
+  @Column({ nullable: true, unique: false, comment: 'Số răng' })
+  numberOfTeeth: string;
+
+  @ApiProperty({
+    nullable: true,
+    uniqueItems: false,
+    description: 'Vật liệu',
+  })
+  @Column({ nullable: true, unique: false, comment: 'Vật liệu' })
+  material: string;
+
+  @ApiProperty({
+    nullable: true,
+    uniqueItems: false,
+    description: 'Thời gian bắt đầu bảo hành',
+  })
+  @Column({
+    nullable: true,
+    unique: false,
+    comment: 'Thời gian bắt đầu bảo hành',
+    type: 'bigint',
+  })
+  startDate: number;
+
+  @ApiProperty({
+    nullable: true,
+    uniqueItems: false,
+    description: 'Thời gian kết thúc bảo hành',
+  })
+  @Column({
+    nullable: true,
+    unique: false,
+    comment: 'Thời gian kết thúc bảo hành',
+    type: 'bigint',
+  })
+  endDate: number;
 }
