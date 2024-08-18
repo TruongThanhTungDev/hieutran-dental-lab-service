@@ -11,10 +11,10 @@ import { UsersModule } from './users/users.module';
   imports: [
     TypeOrmModule.forRoot({
       type: 'mysql',
-      host: 'localhost',
+      host: '103.216.117.76',
       port: 3306,
-      username: 'root',
-      password: '',
+      username: 'admin01',
+      password: 'Admin@00',
       database: 'hieutran_db',
       autoLoadEntities: true,
       synchronize: true, // Chỉ sử dụng synchronize: true trong quá trình phát triển
