@@ -63,7 +63,7 @@ export class ProductDto {
     description: 'Thời gian bắt đầu bảo hành',
   })
   @IsOptional()
-  @IsLongitude()
+  @IsNumber()
   startDate?: number;
 
   @ApiProperty({
@@ -72,6 +72,6 @@ export class ProductDto {
     description: 'Thời gian kết thúc bảo hành',
   })
   @IsOptional()
-  @IsLongitude()
+  @IsNumber()
   endDate?: number;
 }

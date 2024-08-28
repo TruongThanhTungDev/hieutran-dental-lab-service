@@ -70,6 +70,7 @@ export class ProductsService extends BaseAbstractService<ProductsEntity> {
       query.andWhere('product.endDate <= :endDate', { endDate });
     }
 
+    query.orderBy('product.createdAt', 'DESC');
     const [data, count] = await query
       .skip((page - 1) * limit)
       .take(limit)
