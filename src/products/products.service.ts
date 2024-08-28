@@ -14,7 +14,7 @@ export class ProductsService extends BaseAbstractService<ProductsEntity> {
   }
   async search(
     searchCriteria: Partial<ProductsEntity> & { page?: number; limit?: number },
-  ): Promise<{ data: ProductsEntity[]; count: number }> {
+  ): Promise<{ data: ProductsEntity[]; count: number, totalPages: number }> {
     const {
       code,
       patientName,
@@ -74,8 +74,8 @@ export class ProductsService extends BaseAbstractService<ProductsEntity> {
       .skip((page - 1) * limit)
       .take(limit)
       .getManyAndCount();
-
-    return { data, count };
+    const totalPages = Math.ceil(count / limit)
+    return { data, count, totalPages };
   }
   async searchByCode(code: string): Promise<ProductsEntity> {
     const product = await this.productsRepository.findOne({ where: { code } });
