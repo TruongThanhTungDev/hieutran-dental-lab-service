@@ -12,4 +12,11 @@ export class MaterialsService extends BaseAbstractService<MaterialsEntity> {
   ) {
     super(materialsRepository);
   }
+
+  async findAllWithType(): Promise<MaterialsEntity[]> {
+    return this.materialsRepository.find({ relations: ['type'] });
+  }
+  update(id: number, type: Partial<MaterialsEntity>): Promise<any> {
+    return this.materialsRepository.update(id, type);
+  }
 }

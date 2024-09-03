@@ -6,6 +6,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { MaterialsModule } from './materials/materials.module';
 import { AuthModule } from './auth/auth.module';
 import { UsersModule } from './users/users.module';
+import { TypeMaterialEditorModule } from './type-material-editor/type-material-editor.module';
 
 @Module({
   imports: [
@@ -23,6 +24,7 @@ import { UsersModule } from './users/users.module';
     MaterialsModule,
     AuthModule,
     UsersModule,
+    TypeMaterialEditorModule,
   ],
   controllers: [AppController],
   providers: [AppService],
