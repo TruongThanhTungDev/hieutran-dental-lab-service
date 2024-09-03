@@ -14,7 +14,7 @@ export class ProductsService extends BaseAbstractService<ProductsEntity> {
   }
   async search(
     searchCriteria: Partial<ProductsEntity> & { page?: number; limit?: number },
-  ): Promise<{ data: ProductsEntity[]; count: number, totalPages: number }> {
+  ): Promise<{ data: ProductsEntity[]; count: number; totalPages: number }> {
     const {
       code,
       patientName,
@@ -75,7 +75,7 @@ export class ProductsService extends BaseAbstractService<ProductsEntity> {
       .skip((page - 1) * limit)
       .take(limit)
       .getManyAndCount();
-    const totalPages = Math.ceil(count / limit)
+    const totalPages = Math.ceil(count / limit);
     return { data, count, totalPages };
   }
   async searchByCode(code: string): Promise<ProductsEntity> {
@@ -87,5 +87,26 @@ export class ProductsService extends BaseAbstractService<ProductsEntity> {
   }
   update(id: number, product: Partial<ProductsEntity>): Promise<any> {
     return this.productsRepository.update(id, product);
+  }
+  async generateUniqueCodeOnly(): Promise<string> {
+    let codeOnlyNumber: string;
+    let isUnique = false;
+
+    while (!isUnique) {
+      // Sinh số ngẫu nhiên từ 000000 đến 999999
+      codeOnlyNumber = Math.floor(Math.random() * 1000000)
+        .toString()
+        .padStart(6, '0'); // Đảm bảo số luôn có 6 chữ số
+
+      // Kiểm tra sự tồn tại của số này trong cơ sở dữ liệu
+      const existingProduct = await this.productsRepository.findOne({
+        where: { codeOnlyNumber },
+      });
+      if (!existingProduct) {
+        isUnique = true; // Số ngẫu nhiên là duy nhất
+      }
+    }
+
+    return codeOnlyNumber;
   }
 }

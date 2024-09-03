@@ -6,15 +6,6 @@ export class ProductDto {
   @ApiProperty({
     nullable: false,
     uniqueItems: false,
-    description: 'Mã thẻ',
-  })
-  @IsNotEmpty()
-  @IsString()
-  code: string;
-
-  @ApiProperty({
-    nullable: false,
-    uniqueItems: false,
     description: 'Tên bệnh nhân',
   })
   @IsNotEmpty()

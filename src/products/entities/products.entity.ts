@@ -15,6 +15,14 @@ export class ProductsEntity extends CommonEntity {
   @ApiProperty({
     nullable: true,
     uniqueItems: false,
+    description: 'Mã thẻ chỉ có số',
+  })
+  @Column({ nullable: false, unique: false, comment: 'Mã thẻ chỉ có số' })
+  codeOnlyNumber: string;
+
+  @ApiProperty({
+    nullable: true,
+    uniqueItems: false,
     description: 'Tên bệnh nhân',
   })
   @Column({ nullable: false, unique: false, comment: 'Tên bệnh nhân' })

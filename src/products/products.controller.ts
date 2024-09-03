@@ -18,7 +18,16 @@ export class ProductsController {
   }
   @Post('/create')
   async create(@Body() product: ProductDto): Promise<ProductDto> {
-    return this.productsService.create(product)
+    const codeOnlyNumber = await this.productsService.generateUniqueCodeOnly()
+    const textMaterial = product.material.slice(0,2).toUpperCase()
+    if (product.material) {
+    }
+    const newProduct = {
+      ...product,
+      codeOnlyNumber,
+      code: textMaterial ? textMaterial + codeOnlyNumber : codeOnlyNumber
+    };
+    return this.productsService.create(newProduct);
   }
 
   @Put('/update/:id')
